@@ -1,0 +1,8 @@
+.idea
+
+Lib/
+Scripts/
+
+db.sqlite3
+
+__pycache__/
