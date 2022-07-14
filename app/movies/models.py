@@ -1,6 +1,6 @@
+from django.urls import reverse
 from django.db import models
 from datetime import date
-
 
 class Category(models.Model):
     """Категории"""
@@ -72,12 +72,15 @@ class Movie(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('movie_detail', kwargs={'slug': self.url})
+
     class Meta:
         verbose_name = 'Фильм'
         verbose_name_plural = 'Фильмы'
 
 
-class MovieShots:
+class MovieShots(models.Model):
     """Кадры из фильма"""
     title = models.CharField('Заголовок', max_length=100)
     description = models.TextField('Описание')
@@ -126,7 +129,8 @@ class Reviews(models.Model):
     email = models.EmailField()
     name = models.CharField('Имя', max_length=100)
     text = models.TextField('Сообщение', max_length=5000)
-    parent = models.ForeignKey('self', verbose_name='Родитель', on_delete=models.SET_NULL,
+    parent = models.ForeignKey('self', verbose_name='Родитель',
+                               on_delete=models.SET_NULL,
                                blank=True, null=True)
     movie = models.ForeignKey(Movie, verbose_name='фильм',
                               on_delete=models.CASCADE)
