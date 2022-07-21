@@ -229,6 +229,11 @@ li > a:only-child:after {
    content: '';
 }
 
+.img-movie-shots {
+   max-width: 250px;
+   max-height: 150px;
+   height: auto;
+}
 
 /* Media Queries
 --------------------------------------------- */

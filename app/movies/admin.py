@@ -1,13 +1,5 @@
 from django.contrib import admin
-from .models import (
-    Category,
-    Actor,
-    Genre,
-    Movie,
-    MovieShots,
-    RatingStar,
-    Rating,
-    Reviews)
+from .models import Category, Actor, Genre, Movie, MovieShots, RatingStar, Rating, Reviews
 
 admin.site.register(Category)
 admin.site.register(Actor)
