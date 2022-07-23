@@ -93,18 +93,10 @@
             фильме {{ movie.title }}</h3>
          <div>
             {% for image in movie.movieshots_set.all %}
-               <img src="{{ image.image.url }}" class="img-movie-shots" alt="{{ movie.description }}">
+               <img src="{{ image.image.url }}" class="img-movie-shots" alt="{{ image.description }}">
             {% endfor %}
          </div>
-         <p class="editContent">{{ movie.description }}</p>
-         <p class="mt-3 italic-blue editContent">
-            <iframe width="560" height="315"
-                    src="https://www.youtube.com/embed/A36LahZNUiE?controls=0"
-                    frameborder="0"
-                    allow="accelerometer;autoplay;encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-            </iframe>
-         </p>
+         <p class="editContent">{{ movie.description|safe }}</p>
       </div>
       <hr>
       <div class="row">
@@ -115,7 +107,7 @@
                   отзыв
                </h3>
 
-               <form action="{% url 'add_review' movie.id %}" method="post" class="mt-4" id="formReview">
+               <form action="{% url 'movies:add_review' movie.id %}" method="post" class="mt-4" id="formReview">
                   {% csrf_token %}
 
                   <input type="hidden" name="parent" id="contactparent" value=""/>
@@ -180,11 +172,10 @@
       </div>
    </div>
    <script>
-      function addReview(name,id) {
-         document.getElementById('contactparent').value = id
-         document.getElementById('contactcomment').innerText = `${name}, `
-      }
-
+       function addReview(name, id) {
+           document.getElementById('contactparent').value = id
+           document.getElementById('contactcomment').innerText = `${name}, `
+       }
    </script>
 
 {% endblock movie %}
