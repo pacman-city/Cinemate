@@ -19,39 +19,39 @@
          </div>
          <div class="desc1-right col-md-6 pl-lg-4">
             <h3 class="editContent">{{ movie.title }}</h3>
-            <h5 class="editContent">
-
-            </h5>
+            <h5 class="editContent"></h5>
             <ul style="list-style: none">
                <li><span><b>Год: </b>{{ movie.year }}</span></li>
                <li><span><b>Страна: </b>{{ movie.country }}</span></li>
                <li><span><b>Слоган: </b>{{ movie.tagline }}</span></li>
-               <li><span>
-                           <b>Режиссер: </b>
-                  {% for director in movie.directors.all %}
-                     {{ director.name }}
-                  {% endfor %}
-                        </span></li>
-               <li><span>
-                           <b>Актеры: </b>
-                  {% for actor in movie.actors.all %}
-                     {{ actor.name }}
-                  {% endfor %}
-                        </span></li>
-               <li><span>
-                           <b>Жанр: </b>
-                  {% for genre in movie.genres.all %}
-                     {{ genre.name }}
-                  {% endfor %}
-                        </span></li>
                <li>
-                  <span><b>Премьера в мире: </b>{{ movie.world_premiere }}</span>
+                  <span>
+                     <b>Режиссер: </b>
+                     {% for director in movie.directors.all %}
+                        <a href="{{ director.get_absolute_url }}">{{ director.name }}</a>
+                     {% endfor %}
+                  </span>
                </li>
+               <li>
+                  <span>
+                     <b>Актеры: </b>
+                     {% for actor in movie.actors.all %}
+                        <a href="{{ actor.get_absolute_url }}">{{ actor.name }}</a>
+                     {% endfor %}
+                  </span>
+               </li>
+               <li>
+                  <span>
+                     <b>Жанр: </b>
+                     {% for genre in movie.genres.all %}
+                        {{ genre.name }}
+                     {% endfor %}
+                  </span>
+               </li>
+               <li><span><b>Премьера в мире: </b>{{ movie.world_premiere }}</span></li>
                <li><span><b>Бюджет: </b>{{ movie.budget }}</span></li>
-               <li><span><b>Сборы в США: </b>{{ movie.fees_in_usa }}</span>
-               </li>
-               <li><span><b>Сборы в мире: </b>{{ movie.fees_in_world }}</span>
-               </li>
+               <li><span><b>Сборы в США: </b>{{ movie.fees_in_usa }}</span></li>
+               <li><span><b>Сборы в мире: </b>{{ movie.fees_in_world }}</span></li>
                <li>
                   <a href="#"><b>Рейтинг: </b>
                      <span class="fa fa-star" aria-hidden="true"></span>
@@ -89,8 +89,7 @@
       </div>
       <div class="row sub-para-w3layouts mt-5">
 
-         <h3 class="shop-sing editContent" style="width: 100%">О
-            фильме {{ movie.title }}</h3>
+         <h3 class="shop-sing editContent" style="width: 100%">О фильме {{ movie.title }}</h3>
          <div>
             {% for image in movie.movieshots_set.all %}
                <img src="{{ image.image.url }}" class="img-movie-shots" alt="{{ image.description }}">
@@ -171,6 +170,7 @@
 
       </div>
    </div>
+
    <script>
        function addReview(name, id) {
            document.getElementById('contactparent').value = id
