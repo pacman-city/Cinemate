@@ -2,13 +2,14 @@
 
 <div class="search-bar w3layouts-newsletter">
    <h3 class="sear-head editContent">Поиск фильма</h3>
-   <form action="#" method="post" class="d-flex editContent">
-      <input type="search" placeholder="Введите название..." name="search" class="form-control" required="">
-      <button class="btn1 btn"><span class="fa fa-search" aria-hidden="true"></span></button>
+   <form action="{% url 'movies:search' %}" method="GET" class="d-flex editContent">
+      <input type="search" placeholder="Введите название..." name="q" class="form-control" required="">
+      <button type="submit" class="btn1 btn"><span class="fa fa-search" aria-hidden="true"></span></button>
    </form>
 </div>
 
-<form action="{% url 'movies:json_filter' %}" method="GET" name="filter">
+{#<form action="{% url 'movies:json_filter' %}" method="GET" name="filter">#}
+<form action="{% url 'movies:filter' %}" method="GET" name="filter">
    <div class="left-side my-4">
       <h3 class="sear-head editContent">Жанры</h3>
       <ul class="w3layouts-box-list">
