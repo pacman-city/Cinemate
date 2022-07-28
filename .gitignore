@@ -1,7 +1,5 @@
 .idea
-
 Lib/
 Scripts/
-
-
 __pycache__/
+bd.bak
